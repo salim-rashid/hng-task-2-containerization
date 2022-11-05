@@ -1,14 +1,16 @@
 version: "3.8"
 services: 
+  api:
+    container_name: api_container
+    image: salimrashid/api-docker-image
+    ports:
+     - "8000:8000"
   frontend: 
-    build: ./frontend
     container_name: frontend_container
+    image: salimrashid/frontend-docker-image
     ports: 
     - "3000:3000"
     stdin_open: true
     tty: true
-  api:
-    build: ./api
-    container_name: api_container
-    ports:
-     - "8000:8000"
+    depends_on:
+      - api 
